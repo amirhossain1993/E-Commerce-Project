@@ -55,30 +55,20 @@
                         <li>
                             <a href="#">Links</a>
                             <ul>
-                                <li>
-                                    <div class="header-dropdown">
-                                        <a href="#">USD</a>
-                                        <div class="header-menu">
-                                            <ul>
-                                                <li><a href="#">Eur</a></li>
-                                                <li><a href="#">Usd</a></li>
-                                            </ul>
-                                        </div><!-- End .header-menu -->
-                                    </div>
-                                </li>
+                                
                                 <li>
                                     <div class="header-dropdown">
                                         <a href="#">English</a>
                                         <div class="header-menu">
                                             <ul>
                                                 <li><a href="#">English</a></li>
-                                                <li><a href="#">French</a></li>
-                                                <li><a href="#">Spanish</a></li>
+                                                <li><a href="#">Bangla</a></li>
+                                                
                                             </ul>
                                         </div><!-- End .header-menu -->
                                     </div>
                                 </li>
-                                <li><a href="#signin-modal" data-toggle="modal">Sign in / Sign up</a></li>
+                                
                             </ul>
                         </li>
                     </ul><!-- End .top-menu -->
@@ -116,33 +106,45 @@
                 </div>
 
                 <div class="header-right">
+
                     <div class="dropdown compare-dropdown">
                         <a href="#" class="dropdown-toggle" role="button" data-toggle="dropdown" aria-haspopup="true"
                             aria-expanded="false" data-display="static" title="Compare Products"
                             aria-label="Compare Products">
                             <div class="icon">
-                                <i class="icon-random"></i>
+                                <i class="icon-user"></i>
                             </div>
-                            <p>Compare</p>
+                            <p>User</p>
                         </a>
 
                         <div class="dropdown-menu dropdown-menu-right">
+
+                        {% if user.is_authenticated %}
+
                             <ul class="compare-products">
                                 <li class="compare-product">
-                                    <a href="#" class="btn-remove" title="Remove Product"><i class="icon-close"></i></a>
-                                    <h4 class="compare-product-title"><a href="product.html">Blue Night Dress</a></h4>
-                                </li>
-                                <li class="compare-product">
-                                    <a href="#" class="btn-remove" title="Remove Product"><i class="icon-close"></i></a>
-                                    <h4 class="compare-product-title"><a href="product.html">White Long Skirt</a></h4>
+                                    <a href="#" class="btn-remove" title="Remove Product"></a>
+                                    <h4 class="compare-product-title"><a href="{% url 'logout_view' %}">Log Out / Sign Out</a></h4>
                                 </li>
                             </ul>
 
-                            <div class="compare-actions">
-                                <a href="#" class="action-link">Clear All</a>
-                                <a href="#" class="btn btn-outline-primary-2"><span>Compare</span><i
-                                        class="icon-long-arrow-right"></i></a>
-                            </div>
+                        {% else %}
+
+                            <ul class="compare-products">  
+                                <li class="compare-product">
+                                    <a href="#" class="btn-remove" title="Remove Product"></a>
+                                    <h4 class="compare-product-title"><a href="{% url 'register_form' %}" target="_blank" >Sign Up / Registretion</a></h4>
+                                </li>
+                                <li class="compare-product">
+                                    <a href="#" class="btn-remove" title="Remove Product"></a>
+                                    <h4 class="compare-product-title"><a href="{% url 'login_page' %}" target="_blank" >Sign In / Log In</a></h4>
+                                </li>
+                            </ul>
+
+                        {% endif %}
+                            
+
+                            
                         </div><!-- End .dropdown-menu -->
                     </div><!-- End .compare-dropdown -->
 
@@ -225,6 +227,7 @@
                         </div><!-- End .dropdown-menu -->
                     </div><!-- End .cart-dropdown -->
                 </div><!-- End .header-right -->
+
             </div><!-- End .container -->
         </div><!-- End .header-middle -->
 
@@ -1245,3 +1248,6 @@
     <!-- Mirrored from portotheme.com/html/molla/index-4.html by HTTrack Website Copier/3.x [XR&CO'2014], Thu, 28 Dec 2023 11:32:15 GMT -->
 
 </html>
+
+    
+
