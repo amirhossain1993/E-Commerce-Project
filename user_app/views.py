@@ -7,6 +7,10 @@ from django.shortcuts import render, redirect, HttpResponse
 
 from django.contrib.auth import logout
 
+
+from user_app.forms import *
+from django.contrib import messages
+
 # Create your views here.
 
 def register_form(request):
@@ -14,7 +18,7 @@ def register_form(request):
         form = RegisterForm(request.POST)
         if form.is_valid():
             form.save()
-            return redirect('/')
+            return redirect('login_page')
         
     else:
         form = RegisterForm()
@@ -46,3 +50,27 @@ def logout_view(request):
     logout(request)
     return redirect('/')
 
+
+
+
+def profileupdate(request):
+    if request.method == 'POST':
+        user_form = UserUpdate(request.POST, instance=request.user)
+        profile_form = ProfileUpdate(request.POST, request.FILES, instance=request.user.profile)
+        if user_form.is_valid() and profile_form.is_valid():
+            user_form.save()
+            profile_form.save()
+            messages.info(request, 'Profile details updated.')
+            return redirect('profile_page')
+    else:
+        user_form = UserUpdate(instance=request.user)
+        profile_form = ProfileUpdate(instance=request.user.profile)
+
+    context = {
+        'user_form': user_form,
+        'profile_form': profile_form
+    }
+    return render(request, 'user_app/profileupdate.html', context)
+
+def profile(request):
+        return render (request, 'user_app/profile.html')
