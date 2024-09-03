@@ -34,7 +34,7 @@ def login_page(request):
         user = authenticate(request, username=username, password=pass1)
         if user is not None:
             auth_login(request, user)
-            return redirect('/')
+            return redirect('profile_page')
         else:
             # Return an 'invalid login' error message
             context = {
