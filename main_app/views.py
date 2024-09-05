@@ -51,6 +51,11 @@ def product_search(request):
 
 
 
+def category_product(request,pk):
+    filtering = Category.objects.get(pk=pk)
+    product_filter = Product.objects.filter(category=filtering.id)
+    return render(request, 'main_app/category_product_show.html',{'product_filter':product_filter})
+
 
 
 

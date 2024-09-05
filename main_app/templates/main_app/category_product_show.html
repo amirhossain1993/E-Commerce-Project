@@ -39,9 +39,7 @@
                     }
                 }'>
                 
-                {% if search_product %}
-
-                {% for c in search_product  %}
+                {% for c in product_filter %}
                 <div class="product">
                     <figure class="product-media">
                         <span class="product-label label-sale">Sale</span>
@@ -86,13 +84,6 @@
                     </div><!-- End .product-body -->
                 </div><!-- End .product -->
                 {% endfor %}
-
-                {% else %}
-                    <h3>No Product Found.</h3>
-                {% endif %} 
-
-                
-                
 
             </div><!-- End .owl-carousel -->
         </div><!-- .End .tab-pane -->

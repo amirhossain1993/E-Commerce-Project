@@ -46,7 +46,7 @@
         <div class="header-top">
             <div class="container">
                 <div class="header-left">
-                    <a href="tel:#"><i class="icon-phone"></i>Call: +0123 456 789</a>
+                    <a href="tel:#"><i class="icon-phone"></i>Call: +880 1725 113364</a>
                 </div><!-- End .header-left -->
 
                 <div class="header-right">
@@ -110,11 +110,11 @@
                     <div class="dropdown compare-dropdown">
                         <a href="#" class="dropdown-toggle" role="button" data-toggle="dropdown" aria-haspopup="true"
                             aria-expanded="false" data-display="static" title="Compare Products"
-                            aria-label="Compare Products">
+                            aria-label="Profile">
                             <div class="icon">
                                 <i class="icon-user"></i>
                             </div>
-                            <p>User</p>
+                            <p>Profile</p>
                         </a>
 
                         <div class="dropdown-menu dropdown-menu-right">
@@ -124,8 +124,14 @@
                             <ul class="compare-products">
                                 <li class="compare-product">
                                     <a href="#" class="btn-remove" title="Remove Product"></a>
+                                    <h4 class="compare-product-title"><a href="{% url 'profile_page' %}">Profile</a></h4>
+                                </li>
+
+                                <li class="compare-product">
+                                    <a href="#" class="btn-remove" title="Remove Product"></a>
                                     <h4 class="compare-product-title"><a href="{% url 'logout_view' %}">Log Out / Sign Out</a></h4>
                                 </li>
+
                             </ul>
 
                         {% else %}
@@ -243,17 +249,11 @@
                         <div class="dropdown-menu">
                             <nav class="side-nav">
                                 <ul class="menu-vertical sf-arrows">
-                                    <li class="item-lead"><a href="#">Daily offers</a></li>
-                                    <li class="item-lead"><a href="#">Gift Ideas</a></li>
-                                    <li><a href="#">Beds</a></li>
-                                    <li><a href="#">Lighting</a></li>
-                                    <li><a href="#">Sofas & Sleeper sofas</a></li>
-                                    <li><a href="#">Storage</a></li>
-                                    <li><a href="#">Armchairs & Chaises</a></li>
-                                    <li><a href="#">Decoration </a></li>
-                                    <li><a href="#">Kitchen Cabinets</a></li>
-                                    <li><a href="#">Coffee & Tables</a></li>
-                                    <li><a href="#">Outdoor Furniture </a></li>
+
+                                {% for x in global_category %}
+                                    <li class="item-lead"><a href="{% url 'category_product_page' x.pk %}">{{ x.name }}</a></li>
+                                {% endfor %}
+                                    
                                 </ul><!-- End .menu-vertical -->
                             </nav><!-- End .side-nav -->
                         </div><!-- End .dropdown-menu -->

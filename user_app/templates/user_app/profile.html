@@ -3,9 +3,9 @@
 
 {% block content %}
 <div class="conteiner">
-    <div class="col-11 col-md-5 mx-auto mt-5">
+    <div class="col-11 col-md-3 mx-auto mt-5">
         <div class="card shadow p-3">
-            <img src="{{ user.profile.image.url}}" style="height: 400px; width: 350px; " alt="" >
+            <img src="{{ user.profile.image.url}}" style="height: 250px; width: 350px; " alt="" >
         </div>
         <div class="card-body">
             <p> {{ user.username }} </p>
@@ -13,9 +13,17 @@
             <p> {{ user.last_name }} </p>
             <p> {{ user.email }} </p>
             <p> {{ user.profile.phone }} </p>
-            <p> {{ user.profile.Date_of_Birth }} </p>
+            <p> {{ user.profile.date_of_birth }} </p>
+            <br />
 
-        <a href="{% url 'profileupdat_page' %}">update</a>
+
+        <a href="{% url 'profileupdat_page' %}">
+            <button type="button">Update</button>
+        </a>
+
+        <a href="{% url 'password_change' %}">
+            <button type="button">Change Password</button>
+        </a>
 
         </div>
     </div>
