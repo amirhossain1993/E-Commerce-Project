@@ -146,3 +146,15 @@ class OrderItem(models.Model):
     def __str__(self):
         return f"Order {self.product.name} - {self.quantity}"
     
+
+
+class ShippingAddress(models.Model):
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    address = models.CharField(max_length=255)
+    city = models.CharField(max_length=100)
+    state = models.CharField(max_length=100)
+    delivery_area = models.CharField(max_length=20, choices=[('inside_dhaka', 'Inside Dhaka'), ('outside_dhaka', 'Outside Dhaka')])
+    
+    def _str_(self):
+        return f"{self.user.username} - {self.address}"
+    
