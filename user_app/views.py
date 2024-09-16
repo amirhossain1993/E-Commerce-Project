@@ -74,3 +74,6 @@ def profileupdate(request):
 
 def profile(request):
         return render (request, 'user_app/profile.html')
+    
+    
+
