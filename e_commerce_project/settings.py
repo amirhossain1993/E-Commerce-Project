@@ -67,6 +67,8 @@ TEMPLATES = [
                 'django.contrib.messages.context_processors.messages',
                 
                 'main_app.context_processors.global_category',
+                'main_app.context_processors.global_cart',
+                'main_app.context_processors.global_wishlistt',
             ],
         },
     },
