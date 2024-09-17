@@ -81,6 +81,10 @@ class Brand(models.Model):
 class Product(models.Model):
     name = models.CharField (max_length=200)
     image = models.ImageField (upload_to='product_image/')
+    # product_side_image = models.ImageField (upload_to='product_side_image/')
+    # product_cross_image = models.ImageField (upload_to='product_cross_image/')
+    # product_with_model_image = models.ImageField (upload_to='product_with_model_image/')
+    # product_back_image = models.ImageField (upload_to='product_back_image/')
     regular_price = models.PositiveIntegerField()
     discount_price = models.PositiveSmallIntegerField(blank=True, null=True)
     descriptions = models.TextField()

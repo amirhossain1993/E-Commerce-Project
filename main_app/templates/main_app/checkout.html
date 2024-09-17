@@ -54,11 +54,11 @@
     function updateTotal() {
         const deliveryArea = document.getElementById('delivery_area').value;
         const deliveryCharge = deliveryCharges[deliveryArea]; // Get delivery charge based on selection
-        const cartTotal = parseFloat(document.getElementById('cart-total').textContent.replace('$', '')); // Cart total
+        const cartTotal = parseFloat(document.getElementById('cart-total').textContent.replace('TK', '')); // Cart total
         const finalTotal = cartTotal + deliveryCharge; // Final total including delivery charge
 
-        document.getElementById('delivery-charge').textContent = $${deliveryCharge}; // Update delivery charge
-        document.getElementById('final-total').textContent = $${finalTotal}; // Update final total
+       document.getElementById('delivery-charge').textContent = `TK${deliveryCharge}`; // Update delivery charge
+        document.getElementById('final-total').textContent = `TK${finalTotal}`; // Update final total
     }
 
     // Call the function once the page loads to set the initial delivery charge
