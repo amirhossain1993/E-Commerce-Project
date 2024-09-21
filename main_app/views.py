@@ -3,6 +3,9 @@ from django.contrib.auth.decorators import login_required
 from django.db.models import Q
 from main_app.forms import *
 
+from django.contrib.auth.decorators import login_required
+import uuid
+
 
 # Create your views here.
 
@@ -170,7 +173,7 @@ def checkout(request):
         # Clear the cart
         cart_items.delete()
 
-        return redirect('/', order_id=order.id)
+        return redirect('payment', order_id=order.id)
 
     # Calculate total price for GET requests
     cart_items = Cart.objects.filter(user=request.user)
@@ -188,3 +191,37 @@ def checkout(request):
     }
 
     return render(request, 'main_app/checkout.html', context)
+
+
+
+@login_required
+def payment(request, order_id):
+    order = get_object_or_404(Order, id=order_id, user=request.user)
+    if request.method == 'POST':
+        # Generate a unique transaction ID
+        transaction_id = str(uuid.uuid4())
+        
+        # Process payment (integrate with payment gateway)
+        payment = Payment.objects.create(
+            order=order,
+            amount=order.total_price,
+            payment_method=request.POST.get('payment_method'),
+            transaction_id=transaction_id,  # Unique transaction ID
+            status='completed'
+        )
+        
+        order.status = 'processing'
+        order.save()
+        return redirect('order_confirmation', order_id=order.id)
+    
+    return render(request, 'main_app/payment.html', {'order': order})
+
+@login_required
+def order_confirmation(request, order_id):
+    order = get_object_or_404(Order, id=order_id, user=request.user)
+    return render(request, 'main_app/order_confirmation.html', {'order': order})
+
+@login_required
+def order_history(request):
+    orders = Order.objects.filter(user=request.user).order_by('-created_at')
+    return render(request, 'main_app/order_history.html', {'orders': orders})

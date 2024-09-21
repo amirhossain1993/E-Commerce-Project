@@ -18,5 +18,10 @@ urlpatterns = [
     path('add_to_wishlist/<int:product_id>/', add_to_wishlist, name='add_to_wishlist'),
     path('wishlist/', wishlist, name='wishlist'),
     
-    path('checkout/', checkout, name='checkout')
+    path('checkout/', checkout, name='checkout'),
+    
+    path('payment/<int:order_id>/', payment, name='payment'),
+    path('order_confirmation/<int:order_id>/', order_confirmation, name='order_confirmation'),
+    path('order_history/', order_history, name='order_history'),
+    
 ]
