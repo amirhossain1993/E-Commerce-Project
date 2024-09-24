@@ -38,8 +38,12 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     
+    "crispy_forms",
+    "crispy_bootstrap5",
+    
     'main_app',
     'user_app',
+    'dashboard_app'
 ]
 
 MIDDLEWARE = [
@@ -122,7 +126,13 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/5.0/howto/static-files/
 
-STATIC_URL = 'static/'
+import os
+
+STATIC_URL = '/static/'
+STATIC_ROOT = os.path.join(BASE_DIR, 'static')
+
+MEDIA_URL = '/media/'
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.0/ref/settings/#default-auto-field
@@ -134,3 +144,7 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 STRIPE_SECRET_KEY = 'sk_test_51Q0ObREFdCFrDmEts5hT5N0geErbg0Z4uDdKimOQ5QpDSCvfeL10UNKW7oNY6e3UhYYRUnKsiPjOHgyXAniG73sK00SJCTziYG'
 STRIPE_PUBLISHABLE_KEY = 'pk_test_51Q0ObREFdCFrDmEtLJCsYD52U7G3wMWRJyvETCPSIeRaGEXF9jRjdBJjszFaJlS6WQRK7vPqh0Io1ACfiESPM0mN00RqayG02m'
+
+
+CRISPY_ALLOWED_TEMPLATE_PACKS = "bootstrap5"
+CRISPY_TEMPLATE_PACK = "bootstrap5"
